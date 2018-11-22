@@ -1,0 +1,117 @@
+<!-- Navigation -->
+    <nav style="font-size:20px;"class="navbar navbar-light bg-light static-top">
+      <div class="container">
+        <a style="font-size:25px;" class="navbar-brand" href="/">정보통신공학과</a>
+        <% if user_signed_in? %>
+        <a  href="#">내정보</a>
+        <a href="/chat/index">심심이</a>
+        <a  href="http://wku.ac.kr">원광대학교</a>
+        <a href="https://www.inflearn.com/">프로그래밍 무료강좌</a>
+        <a href="https://likelion.net/ko">멋쟁이 사자처럼 소개</a>
+        <a href="/posts">|게시판|</a>
+        <% else %>
+        <% end %>
+      </div>
+    </nav>
+  <div style="background-color:#F7F8E0">
+ <div style="text-align:center">
+              <h3 class="mb-0">홈페이지에 오신걸 환영합니다.</h3>
+              <div class="subheading mb-3">내정보</div>
+<% if user_signed_in? %>
+<p style="font-size:20px" ><ins><%= current_user.name %></ins>님 안녕하세요.</p>
+<p style="font-size:20px" ><ins><%= current_user.email %></ins>으로 접속중.</p>
+  <p style="font-size:20px" ><ins><%= current_user.nickname %></ins>님</p>   
+        <% if current_user.age.present? %>
+            <p style="font-size:20px">나이 : <ins><%= current_user.age %></ins></p>
+        <% else %>
+            <p style="font-size:20px">나이 정보를 업데이트 해주세요!</p>
+            <p><a href="/users/edit" class="btn btn-default">프로필수정</a></p>
+        <% end %>
+        <% if current_user.gender.present? %>
+            <p style="font-size:20px" >성별 : <ins><%= current_user.gender %></ins></p>
+        <% else %>
+            <p style="font-size:20px">성별 정보를 업데이트 해주세요!</p>
+            <p><a href="/users/edit" class="btn btn-default">프로필수정</a></p>
+        <% end %>
+        <p><a style="color:#FFFFFF" href="/users/edit" class="btn btn-primary">프로필수정</a></p>
+<a style="color:#FFFFFF" class="btn btn-primary" href="/">이전으로</a>
+
+<% else %>
+<% end %>
+</div>
+            </div>
+          </div>
+<!-- Call to Action -->
+    <section class="call-to-action text-white text-center">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-9 mx-auto">
+          </div>
+          <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+            <form>
+                <div style="font-size:30px; text-align:center;">
+
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+<!-- Icons Grid -->
+    <section class="features-icons bg-light text-center">
+      <div class="container">
+        <div class="row">
+          </div>
+                <body style="text-align:center;" onload="printClock()">
+                  <div style="color:#666;font-size:100px; text-align:center;" id="clock">
+	</div><br><br><br></br><p style="font-size:70px;">현재시간</p>  
+	</div>
+    </section>
+    <!-- Footer -->
+    <footer class="footer bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+            <ul class="list-inline mb-2">
+              <li class="list-inline-item">
+                <a href="#">About</a>
+              </li>
+              <li class="list-inline-item">&sdot;</li>
+              <li class="list-inline-item">
+                <a href="#">Contact</a>
+              </li>
+              <li class="list-inline-item">&sdot;</li>
+              <li class="list-inline-item">
+                <a href="#">Terms of Use</a>
+              </li>
+              <li class="list-inline-item">&sdot;</li>
+              <li class="list-inline-item">
+                <a href="#">Privacy Policy</a>
+              </li>
+            </ul>
+            <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2018. All Rights Reserved.</p>
+          </div>
+          <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
+            <ul class="list-inline mb-0">
+              <li class="list-inline-item mr-3">
+                <a href="#">
+                  <i class="fab fa-facebook fa-2x fa-fw"></i>
+                </a>
+              </li>
+              <li class="list-inline-item mr-3">
+                <a href="#">
+                  <i class="fab fa-twitter-square fa-2x fa-fw"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">
+                  <i class="fab fa-instagram fa-2x fa-fw"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>

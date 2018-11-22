@@ -1,0 +1,49 @@
+<!-- Navigation -->
+    <nav style="font-size:20px;"class="navbar navbar-light bg-light static-top">
+      <div class="container">
+        <a style="font-size:25px;" class="navbar-brand" href="/">정보통신공학과</a>
+         <% if user_signed_in? %>
+        <a style="font-size:15px;"  href="/mypage/index">|내정보|</a>
+        <a style="font-size:15px;" href="/chat/index">|심심이|</a>
+         <a style="font-size:15px;" href="/map/index">|지도|</a>
+        <a style="font-size:15px;"  href="http://wku.ac.kr">|원광대학교|</a>
+        <a style="font-size:15px;" href="https://www.inflearn.com/">|프로그래밍 무료강좌|</a>
+        <a style="font-size:15px;" href="https://www.codecademy.com/">|코딩 무료 교육|</a>
+        <a style="font-size:15px;" href="https://likelion.net/ko">|멋쟁이 사자처럼 소개|</a>
+        <a style="font-size:15px;" href="/posts">|게시판|</a>
+        <% else %>
+        <% end %>
+        <% if user_signed_in? %>
+        </br>
+        <a style="color:#FFFFFF" class="btn btn-primary" href="/users/sign_out">로그아웃</a>
+        <% else %>
+        <a style="color:#FFFFFF" class="btn btn-primary" href="/users/sign_in">로그인</a>
+        <% end %>
+      </div>
+    </nav>
+<h2>비밀번호 변경</h2>
+
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+  <%= devise_error_messages! %>
+  <%= f.hidden_field :reset_password_token %>
+
+  <div class="field">
+    <%= f.label :비밀번호, "새비밀번호" %><br />
+    <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+    <% end %>
+    <%= f.password_field :password, autofocus: true, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :비밀번호 확인, "비밀번호 확인" %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "비밀번호 변경" %>
+  </div>
+<% end %>
+
+<%= render "users/shared/links" %>
+

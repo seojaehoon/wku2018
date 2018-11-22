@@ -1,0 +1,43 @@
+<!-- Navigation -->
+    <nav style="font-size:20px;"class="navbar navbar-light bg-light static-top">
+      <div class="container">
+        <a style="font-size:25px;" class="navbar-brand" href="#">정보통신공학과</a>
+         <% if user_signed_in? %>
+        <a style="font-size:15px;"  href="mypage/index">|내정보|</a>
+        <a style="font-size:15px;" href="/chat/index">|심심이|</a>
+         <a style="font-size:15px;" href="/map/index">|지도|</a>
+        <a style="font-size:15px;"  href="http://wku.ac.kr">|원광대학교|</a>
+        <a style="font-size:15px;" href="https://www.inflearn.com/">|프로그래밍 무료강좌|</a>
+        <a style="font-size:15px;" href="https://www.codecademy.com/">|코딩 무료 교육|</a>
+        <a style="font-size:15px;" href="https://likelion.net/ko">|멋쟁이 사자처럼 소개|</a>
+        <a style="font-size:15px;" href="/posts">|게시판|</a>
+        <% else %>
+        <% end %>
+        <% if user_signed_in? %>
+        </br>
+        <a style="color:#FFFFFF" class="btn btn-primary" href="/users/sign_out">로그아웃</a>
+        <% else %>
+        <a style="color:#FFFFFF" class="btn btn-primary" href="/users/sign_in">로그인</a>
+        <% end %>
+      </div>
+    </nav>
+<h2>Resend confirmation instructions</h2>
+
+<%= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+  <%= f.error_notification %>
+  <%= f.full_error :confirmation_token %>
+
+  <div class="form-inputs">
+    <%= f.input :email,
+                required: true,
+                autofocus: true,
+                value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email),
+                input_html: { autocomplete: "email" } %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Resend confirmation instructions" %>
+  </div>
+<% end %>
+
+<%= render "users/shared/links" %>

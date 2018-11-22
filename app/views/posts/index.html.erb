@@ -1,0 +1,58 @@
+<div class="container">
+<style>
+       div{
+         width: 400px;
+         padding: 30px;
+         margin: 30px;
+       }
+       body div:last-child{
+         border: 5px solid gray;
+       }
+</style>
+<%= render 'searches/search_form', post: @posts.klass %>
+<h1>게시판 목록</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>제목</div></th>
+      <th>작성자</th>
+      <th>이메일</th>
+    </tr>
+  </thead>
+   <tbody>
+    <% @posts.each do |post| %>
+      <% if post.notice == true %>
+        <tr>
+          <td><%= post.title %></td>
+          <td><%= post.content %></td>
+          <td><%= link_to 'Show', post %></td>
+          <td><%= link_to 'Edit', edit_post_path(post) %></td>
+          <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+
+  <tbody>
+    <% @posts.each do |post| %>
+      <tr>
+        <td><%= link_to post.title, post %></td>
+        <td><%= post.user.name %></td>
+        <td><%= post.user.email %></td>
+        <% if current_user.email == post.user.email or current_user.has_role? :admin   %>
+          <td><%= link_to '보기', post %></td>
+          <td><%= link_to '수정', edit_post_path(post) %></td>
+          <td><%= link_to '삭제', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% else %>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<p>|<%= link_to '게시물 작성', new_post_path %>|</p>
+<p class="btn btn-primary"><a style="color:#FFFFFF" href="/" >메인으로</a></p>
+</div>

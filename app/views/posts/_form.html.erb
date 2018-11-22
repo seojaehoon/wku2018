@@ -1,0 +1,28 @@
+<%= form_with(model: post, local: true) do |form| %>
+  <% if post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <% if current_user.has_role? :admin %>
+    <font color="red">어드민 전용 : 해당 게시글 공지사항 설정 </font><br/>
+  <% end %>
+  <div class="field">
+    <%= form.label :제목 %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :내용 %>
+    <%= form.text_area :content,id: :post_content, class: "form-control tinymce", rows: "10" %>
+  </div>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

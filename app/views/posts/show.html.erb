@@ -1,0 +1,80 @@
+<div class="container">
+  <style>
+       div{
+         padding: 30px;
+         margin: 30px;
+       }
+       body div:first-child{
+         border: 5px solid gray;
+       }
+</style>
+<div style="font-size:20px;"class="navbar navbar-light bg-light static-top">
+  <%= link_to '목록', posts_path %>
+  <% if can? :update, @post %>
+  <%= link_to '수정', edit_post_path(@post) %>
+  <% end %>
+  <% if can? :destroy, @post %>
+  <%= link_to '삭제', @post, method: :delete, method: :delete, data: { confirm: '진짜로 지울건가요???' } %>
+  <% end %>
+</div>
+  <h2><p>제목</p><%= @post.title %></h2>
+  <hr>
+  
+  <p><strong>내용</strong></p>
+  <p><%= @post.content %></p>
+  <hr>
+  
+  <p><strong>이메일</strong></p>
+  <p><%= @post.user.email %></p>
+  <hr>
+  <hr>
+  <p><strong>댓글작성</strong></p>
+  <div class="well">
+    <form action="/posts/<%=@post.id%>" method="post">
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+      <div class="form-group">
+        <input type="hidden" value="<%=current_user.id%>" name="user_id"></input>
+        <input type="hidden" value="<%=@post.id%>" name="post_id"></input>
+        <textarea class="form-control" rows="5" name="comment"></textarea>
+      </div>
+      <button type="submit" class="btn btn-default">댓글작성</button>
+    </form>
+  </div>
+  <hr>
+  <p><strong>댓글목록</strong></p><hr>
+  <% @comments = @post.comments.all.reverse %>
+  <% @comments.each do |c| %>
+  <div style="text-align:center" class="well">
+  <hr><p class="original-comment" id="<%=c.id %>">작성자 : <%= c.user.email %></p><hr>
+  <p class="original-comment" id="<%=c.id %>">내용 : <%= c.comment %></p><hr>
+  <div class="edit-comment-<%=c.id%>" style="display:none;">
+    <form action="/posts/<%=@post.id%>/comments/<%=c.id%>" method="post">
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+      <div class="form-group">
+        <input type="hidden" value="<%=current_user.id%>" name="user_id"></input>
+        <input type="hidden" value="<%=@post.id%>" name="post_id"></input>
+        <textarea class="form-control" rows="5" name="comment"><%=c.comment %></textarea>
+      </div>
+     <% if current_user.email == c.user.email or current_user.has_role? :admin   %>
+        <button type="submit" class="btn btn-default">수정완료</button>
+        </form>
+        </br>
+        </div>
+        <div class="edit-comment-<%=c.id%>-button-group">
+        <button class="btn btn-default edit-button" id="edit-comment-<%=c.id %>">수정</button>
+        <a style="color:#FFFFFF" class="btn btn-primary" href="/posts/<%=@post.id%>/comments/<%=c.id%>" data-method="delete" >삭제</a>
+        </div>
+     <% else %>
+     <% end %>
+  </div>
+  <% end %>
+</div>
+
+<script>
+  $(".edit-button").click(function() {
+    var clickedID = this.id;
+    $("."+clickedID).css("display","block");
+    $("."+clickedID+"-button-group").css("display","none");
+  });
+  
+</script>

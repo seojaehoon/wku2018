@@ -1,0 +1,34 @@
+<!-- Navigation -->
+    <nav style="font-size:20px;"class="navbar navbar-light bg-light static-top">
+      <div class="container">
+        <a style="font-size:25px;" class="navbar-brand" href="#">정보통신공학과</a>
+         <% if user_signed_in? %>
+        <a style="font-size:15px;"  href="/mypage/index">|내정보|</a>
+        <a style="font-size:15px;" href="/chat/index">|심심이|</a>
+         <a style="font-size:15px;" href="/map/index">|지도|</a>
+        <a style="font-size:15px;"  href="http://wku.ac.kr">|원광대학교|</a>
+        <a style="font-size:15px;" href="https://www.inflearn.com/">|프로그래밍 무료강좌|</a>
+        <a style="font-size:15px;" href="https://www.codecademy.com/">|코딩 무료 교육|</a>
+        <a style="font-size:15px;" href="https://likelion.net/ko">|멋쟁이 사자처럼 소개|</a>
+        <a style="font-size:15px;" href="/posts">|게시판|</a>
+        <% else %>
+        <% end %>
+        <% if user_signed_in? %>
+        <a style="color:#FFFFFF" class="btn btn-primary" href="/users/sign_out">로그아웃</a>
+        <% else %>
+        <a style="color:#FFFFFF" class="btn btn-primary" href="/users/sign_in">로그인</a>
+        <% end %>
+      </div>
+    </nav>
+<h1><ins>심심이</ins></h1>
+<div  style=" text-align:center">
+<form action="/chat/create">
+    <input type="text" name="content"> 
+     <input type="submit"> 
+</form>
+<ul>
+    <% Chat.all.each do |c| %>
+    <li><%=c.is_man ? "사람" : "컴퓨터" %> : <%= c.content%></li>
+    <% end %>
+</ul>
+</div>

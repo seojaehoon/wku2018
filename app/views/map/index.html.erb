@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<!-- Navigation -->
+    <nav style="font-size:20px;"class="navbar navbar-light bg-light static-top">
+      <div class="container">
+        <a style="font-size:25px;" class="navbar-brand" href="/">정보통신공학과</a>
+         <% if user_signed_in? %>
+        <a style="font-size:15px;"  href="/mypage/index">|내정보|</a>
+        <a style="font-size:15px;" href="/chat/index">|심심이|</a>
+         <a style="font-size:15px;" href="/map/index">|지도|</a>
+        <a style="font-size:15px;"  href="http://wku.ac.kr">|원광대학교|</a>
+        <a style="font-size:15px;" href="https://www.inflearn.com/">|프로그래밍 무료강좌|</a>
+        <a style="font-size:15px;" href="https://www.codecademy.com/">|코딩 무료 교육|</a>
+        <a style="font-size:15px;" href="https://likelion.net/ko">|멋쟁이 사자처럼 소개|</a>
+        <a style="font-size:15px;" href="/posts">|게시판|</a>
+        <% else %>
+        <% end %>
+        <% if user_signed_in? %>
+        </br>
+        <a style="color:#FFFFFF" class="btn btn-primary" href="/users/sign_out">로그아웃</a>
+        <% else %>
+        <a style="color:#FFFFFF" class="btn btn-primary" href="/users/sign_in">로그인</a>
+        <% end %>
+      </div>
+    </nav>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <title>간단한 지도 표시하기</title>
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=ZWLigIqj_o6lUaGxG648"></script>
+</head>
+<body>
+<div id="map" style="width:100%;height:400px;"></div>
+
+<script>
+var map = new naver.maps.Map('map', {
+    center: new naver.maps.LatLng(35.968087, 126.955408),
+    zoom: 10
+});
+
+var marker = new naver.maps.Marker({
+    position: new naver.maps.LatLng(35.968087, 126.955408),
+    map: map
+});
+var map = new naver.maps.Map('map', mapOptions);
+</script>
+</body>
+</html>
+<h1 style="text-align:center">찾아 오시는길</h1>
+<!-- Icons Grid -->
+    <section class="features-icons bg-light text-center">
+      <div class="container">
+        <div class="row">
+          </div>
+                <body style="text-align:center;" onload="printClock()">
+                  <div style="color:#666;font-size:100px; text-align:center;" id="clock">
+	</div><br><br><br></br><p style="font-size:70px;">현재시간</p>     
+	</div>
+    </section>
+    <!-- Call to Action -->
+    <section class="call-to-action text-white text-center">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-9 mx-auto">
+          </div>
+          <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+            <form>
+                <div style="font-size:30px; text-align:center;">
+                  <p style="font-size:20px;">오류 문의 010 - 9052 - 2413</p>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+            <ul class="list-inline mb-2">
+              <li class="list-inline-item">
+                <a href="#">About</a>
+              </li>
+              <li class="list-inline-item">&sdot;</li>
+              <li class="list-inline-item">
+                <a href="#">Contact</a>
+              </li>
+              <li class="list-inline-item">&sdot;</li>
+              <li class="list-inline-item">
+                <a href="#">Terms of Use</a>
+              </li>
+              <li class="list-inline-item">&sdot;</li>
+              <li class="list-inline-item">
+                <a href="#">Privacy Policy</a>
+              </li>
+            </ul>
+            <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2018. All Rights Reserved.</p>
+          </div>
+          <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
+            <ul class="list-inline mb-0">
+              <li class="list-inline-item mr-3">
+                <a href="#">
+                  <i class="fab fa-facebook fa-2x fa-fw"></i>
+                </a>
+              </li>
+              <li class="list-inline-item mr-3">
+                <a href="#">
+                  <i class="fab fa-twitter-square fa-2x fa-fw"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">
+                  <i class="fab fa-instagram fa-2x fa-fw"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>

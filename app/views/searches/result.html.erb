@@ -1,0 +1,6 @@
+<div class="container">
+    <% @searches.each do |x| %>
+        일치하는 제목 : <%= x.title %>　|　일치하는 내용 : <%= content_tag(:span, truncate( raw( sanitize(x.content, :tags => %w(table tr td), :attributes => %w(id class style) ) ), :length => 70, :omission => "...")) %>　| 작성시간 : 　<%= x.created_at.in_time_zone("Asia/Seoul").strftime('%Y-%m-%d %H:%M') %>
+        <hr/>
+    <% end %>
+</div>

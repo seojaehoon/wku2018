@@ -1,0 +1,53 @@
+<!-- Navigation -->
+    <nav style="font-size:20px;"class="navbar navbar-light bg-light static-top">
+      <div class="container">
+        <a style="font-size:25px;" class="navbar-brand" href="/">정보통신공학과</a>
+         <% if user_signed_in? %>
+        <a style="font-size:15px;"  href="/mypage/index">|내정보|</a>
+        <a style="font-size:15px;" href="/chat/index">|심심이|</a>
+         <a style="font-size:15px;" href="/map/index">|지도|</a>
+        <a style="font-size:15px;"  href="http://wku.ac.kr">|원광대학교|</a>
+        <a style="font-size:15px;" href="https://www.inflearn.com/">|프로그래밍 무료강좌|</a>
+        <a style="font-size:15px;" href="https://www.codecademy.com/">|코딩 무료 교육|</a>
+        <a style="font-size:15px;" href="https://likelion.net/ko">|멋쟁이 사자처럼 소개|</a>
+        <a style="font-size:15px;" href="/posts">|게시판|</a>
+        <% else %>
+        <% end %>
+        <% if user_signed_in? %>
+        </br>
+        <a style="color:#FFFFFF" class="btn btn-primary" href="/users/sign_out">로그아웃</a>
+        <% else %>
+        <% end %>
+      </div>
+    </nav>
+<div class="container">
+  <style>
+       div{
+         text-align: center;
+         margin: 30px;
+       }
+</style>
+<h2>회원 로그인</h2>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="field">
+    <%= f.label :이메일 %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div><hr>
+  <div class="field">
+    <%= f.label :비밀번호 %><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div><hr>
+  <% if devise_mapping.rememberable? -%>
+    <div class="field">
+      <%= f.check_box :remember_me %>
+      <%= f.label :이메일_기억하기 %>
+    </div><hr>
+  <% end -%>
+
+  <div class="actions">
+    <%= f.submit "로그인", class: "btn btn-primary" %>
+  </div><hr>
+<% end %>
+
+<%= render "users/shared/links" %>
+</div>
